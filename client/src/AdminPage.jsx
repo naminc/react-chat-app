@@ -8,13 +8,13 @@ function AdminPage() {
   const [form, setForm] = useState({ username: "", password: "", avatar: "" });
 
   const fetchUsers = async () => {
-    const res = await axios.get("/api/users");
+    const res = await axios.get("https://react-chat-app-1-bz2b.onrender.com/api/users");
     setUsers(res.data);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("/api/users", form);
+    await axios.post("https://react-chat-app-1-bz2b.onrender.com/api/users", form);
     setForm({ username: "", password: "", avatar: "" });
     fetchUsers();
   };
