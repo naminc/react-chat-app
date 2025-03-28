@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt");
 const cors = require("cors");
 const http = require("http");
 const socketIo = require("socket.io");
+require("dotenv").config();
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, { cors: { origin: "*" } });
@@ -12,11 +13,13 @@ app.use(cors());
 app.use(express.json());
 
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "chat-app",
+  host: process.env.MYSQLHOST,
+  user: process.env.MYSQLUSER,
+  password: process.env.MYSQLPASSWORD,
+  database: process.env.MYSQLDATABASE,
+  port: process.env.MYSQLPORT,
 });
+
 
 app.post("/api/login", (req, res) => {
   const { username, password } = req.body;
