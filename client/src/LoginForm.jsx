@@ -8,7 +8,7 @@ function LoginForm({ onLogin }) {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post("https://react-chat-app-1-bz2b.onrender.com/api/login", { username, password });
+      const res = await axios.post("/api/login", { username, password });
       localStorage.setItem("user", JSON.stringify(res.data));
       onLogin(res.data);
     } catch (err) {

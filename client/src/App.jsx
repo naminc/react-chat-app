@@ -9,7 +9,7 @@ function App() {
     return saved ? JSON.parse(saved) : null;
   });
 
-  if (window.location.pathname === "https://react-chat-app-1-bz2b.onrender.com/admin") {
+  if (window.location.pathname === "/admin") {
     const saved = localStorage.getItem("user");
     const user = saved ? JSON.parse(saved) : null;
   

@@ -5,7 +5,7 @@ import axios from "axios";
 function UserList({ currentUserId, onSelectUser }) {
   const [users, setUsers] = useState([]);
   useEffect(() => {
-    axios.get("https://react-chat-app-1-bz2b.onrender.com/api/users").then((res) => {
+    axios.get("/api/users").then((res) => {
       setUsers(res.data.filter((u) => u.id !== currentUserId));
     });
   }, [currentUserId]);

@@ -14,7 +14,7 @@ function ChatForm({ user }) {
 
   const fetchMessages = async () => {
     if (!receiver) return;
-    const res = await axios.get(`https://react-chat-app-1-bz2b.onrender.com/api/messages/${user.id}/${receiver.id}`);
+    const res = await axios.get(`/api/messages/${user.id}/${receiver.id}`);
     setMessages(res.data);
   };
 
