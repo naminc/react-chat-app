@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 28, 2025 lúc 02:24 PM
+-- Thời gian đã tạo: Th3 28, 2025 lúc 03:20 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.0.30
 
@@ -20,6 +20,34 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `chat-app`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `messages`
+--
+
+CREATE TABLE `messages` (
+  `id` int(11) NOT NULL,
+  `sender_id` int(11) DEFAULT NULL,
+  `receiver_id` int(11) DEFAULT NULL,
+  `message` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `messages`
+--
+
+INSERT INTO `messages` (`id`, `sender_id`, `receiver_id`, `message`, `created_at`) VALUES
+(1, 3, 1, 'hi', '2025-03-28 12:24:19'),
+(2, 3, 1, 'hihihihih', '2025-03-28 12:27:06'),
+(3, 3, 1, '😀', '2025-03-28 12:28:39'),
+(4, 4, 3, 'hihi', '2025-03-28 12:59:45'),
+(5, 3, 4, 'cc', '2025-03-28 12:59:53'),
+(6, 3, 4, 'fsdfsd', '2025-03-28 13:41:02'),
+(7, 3, 4, 'cái cc', '2025-03-28 13:47:28'),
+(8, 3, 4, 'nguu', '2025-03-28 13:47:33');
 
 -- --------------------------------------------------------
 
@@ -49,6 +77,14 @@ INSERT INTO `users` (`id`, `username`, `password`, `avatar`, `role`) VALUES
 --
 
 --
+-- Chỉ mục cho bảng `messages`
+--
+ALTER TABLE `messages`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `sender_id` (`sender_id`),
+  ADD KEY `receiver_id` (`receiver_id`);
+
+--
 -- Chỉ mục cho bảng `users`
 --
 ALTER TABLE `users`
@@ -60,10 +96,27 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT cho bảng `messages`
+--
+ALTER TABLE `messages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Các ràng buộc cho các bảng đã đổ
+--
+
+--
+-- Các ràng buộc cho bảng `messages`
+--
+ALTER TABLE `messages`
+  ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`sender_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`receiver_id`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

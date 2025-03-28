@@ -82,6 +82,8 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(3002, () => {
-  console.log("Server chạy tại http://localhost:3002");
+const PORT = process.env.PORT || 3002;
+
+server.listen(PORT, () => {
+  console.log(`✅ Server đang chạy tại PORT ${PORT}`);
 });
